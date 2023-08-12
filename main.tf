@@ -9,13 +9,12 @@ resource "aws_key_pair" "Stack_KP" {
   public_key = file(var.PATH_TO_PUBLIC_KEY)
 }
 
-
 resource "aws_instance" "Server" {
  count = length(var.subnet_ids)  //create an ec2 instance for each existing subnet
  subnet_id     = var.subnet_ids[count.index]  //Create an EC2 Instance for each subnet
  ami           = var.ami
  instance_type          = var.instance_type
- vpc_security_group_ids = [aws_security_group.stack-sg.id]
+ vpc_security_group_ids = [aws_security_group.stack-clixx.id]
  user_data = data.template_file.bootstrap.rendered
  key_name = aws_key_pair.Stack_KP.key_name
 #  subnet_id = var.subnet
@@ -31,3 +30,6 @@ root_block_device {
   OwnerEmail = var.OwnerEmail
 }
 }
+
+
+

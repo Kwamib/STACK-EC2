@@ -1,13 +1,12 @@
 
-resource "aws_security_group" "stack-sg" {
+resource "aws_security_group" "stack-clixx" {
 #  vpc_id = var.vpc
   name        = "ClixxWebDMZ"
   description = "Stack IT Security Group For CliXX System"
 }
 
-
 resource "aws_security_group_rule" "ssh" {
-  security_group_id = aws_security_group.stack-sg.id
+  security_group_id = aws_security_group.stack-clixx.id
   type              = "ingress"
   protocol          = "tcp"
   from_port         = 22
@@ -16,7 +15,7 @@ resource "aws_security_group_rule" "ssh" {
 }
 
 resource "aws_security_group_rule" "nfs" {
-  security_group_id = aws_security_group.stack-sg.id
+  security_group_id = aws_security_group.stack-clixx.id
   type              = "ingress"
   protocol          = "tcp"
   from_port         = 2049
@@ -25,7 +24,7 @@ resource "aws_security_group_rule" "nfs" {
 }
 
 resource "aws_security_group_rule" "http" {
-  security_group_id = aws_security_group.stack-sg.id
+  security_group_id = aws_security_group.stack-clixx.id
   type              = "ingress"
   protocol          = "tcp"
   from_port         = 80
@@ -34,7 +33,7 @@ resource "aws_security_group_rule" "http" {
 }
 
 resource "aws_security_group_rule" "mysql" {
-  security_group_id = aws_security_group.stack-sg.id
+  security_group_id = aws_security_group.stack-clixx.id
   type              = "ingress"
   protocol          = "tcp"
   from_port         = 3306
@@ -43,7 +42,7 @@ resource "aws_security_group_rule" "mysql" {
 }
 
 resource "aws_security_group_rule" "https" {
-  security_group_id = aws_security_group.stack-sg.id
+  security_group_id = aws_security_group.stack-clixx.id
   type              = "ingress"
   protocol          = "tcp"
   from_port         = 443
